@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
+
+    defaultConfig {
+        applicationId "pl.androiddev.musicplayer"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        renderscriptTargetApi 26
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+
+            manifestPlaceholders = [ appNameSuffix:""]
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            shrinkResources false
+            minifyEnabled false
+
+            versionNameSuffix "-debug"
+            applicationIdSuffix '.dev'
+            manifestPlaceholders = [ appNameSuffix:" Dev"]
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    jcenter()
+
+    maven { url 'https://maven.google.com' }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:26.0.1'
+    compile 'com.android.support:recyclerview-v7:26.0.1'
+    compile 'com.android.support:cardview-v7:26.0.1'
+    compile 'com.android.support:palette-v7:26.0.1'
+    compile 'com.android.support:design:26.0.1'
+    compile 'com.android.support:percent:26.0.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    compile 'net.steamcrafted:materialiconlib:1.0.3'
+    compile 'de.Maxr1998:track-selector-lib:1.1'
+    compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile('com.github.naman14:app-theme-engine:0.5.2@aar') {
+        transitive = true
+    }
+    compile 'com.github.matthiasrobbers:shortbread:1.0.1'
+    compile 'com.jakewharton:butterknife:8.8.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'
+    annotationProcessor 'com.github.matthiasrobbers:shortbread-compiler:1.0.1'
+}
